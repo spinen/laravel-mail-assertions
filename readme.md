@@ -27,3 +27,45 @@ Install Garbage Man:
 
 ## Using
 
+You mixin the assertions with the ```Spinen\MailAssertions\MailTracking``` trait.  You get the following assertions...
+
+* seeEmailContains
+* seeEmailEquals
+* seeEmailFrom
+* seeEmailSubject
+* seeEmailTo
+* seeEmailWasNotSent
+* seeEmailWasSent
+* seeEmailsSent
+
+NOTE: If there was more than 1 email sent, then the assertions look at the last email.
+
+## Example
+
+```php
+<?php
+use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Spinen\MailAssertions\MailTracking;
+
+class ExampleTest extends TestCase
+{
+    use MailTracking;
+    
+    /**
+     * A basic functional test example.
+     *
+     * @return void
+     */
+    public function testBasicExample()
+    {
+        $this->visit('/route-that-sends-an-email')
+             ->seeEmailWasSent()
+             ->seeEmailSubject('Hello World')
+             ->seeEmailTo('foo@bar.com')
+             ->seeEmailEquals('Click here to buy this jewelry.')
+             ->seeEmailContains('Click here');
+    }
+}
+```
