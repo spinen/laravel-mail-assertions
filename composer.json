@@ -1,0 +1,42 @@
+{
+    "name": "spinen/laravel-mail-assertions",
+    "description": "PHPUnit mail assertions for testing email in Laravel.",
+    "keywords": [
+        "email",
+        "phpunit",
+        "laravel",
+        "library",
+        "spinen"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jimmy Puckett",
+            "email": "jimmy.puckett@spinen.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "illuminate/support": "~5.1.10|5.2.*"
+    },
+    "require-dev": {
+        "mockery/mockery": "~0.9.1",
+        "phpunit/phpunit": "~4.0",
+        "psy/psysh": "~0.5.1",
+        "satooshi/php-coveralls": "~0.6.1",
+        "symfony/var-dumper": "~2.7|3.0.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Spinen\\MailAssertions\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Spinen\\MailAssertions\\": "tests"
+        }
+    },
+    "config": {
+        "preferred-install": "dist"
+    }
+}
