@@ -1,6 +1,6 @@
 # SPINEN's Laravel Mail Assertions
 
-NOTE: This is based off a video titled ["Testing Email With Custom Assertions"](https://laracasts.com/series/phpunit-testing-in-laravel/episodes/12) that Jeffery Way did on [Laracasts.com}(https://laracasts.com).  If you do not have an account on that site, then you should.  It is an amazing resource.  We have just take that example & made it in an easy to install package.  Thanks Jeffery!
+NOTE: This is based off a video titled ["Testing Email With Custom Assertions"](https://laracasts.com/series/phpunit-testing-in-laravel/episodes/12) that Jeffery Way did on [Laracasts.com](https://laracasts.com).  If you do not have an account on that site, then you should.  It is an amazing resource.  We have just take that example & made it in an easy to install package.  Thanks Jeffery!
 
 [![Latest Stable Version](https://poser.pugx.org/spinen/laravel-mail-assertions/v/stable)](https://packagist.org/packages/spinen/laravel-mail-assertions)
 [![Total Downloads](https://poser.pugx.org/spinen/laravel-mail-assertions/downloads)](https://packagist.org/packages/spinen/laravel-mail-assertions)
@@ -27,3 +27,45 @@ Install Garbage Man:
 
 ## Using
 
+You mixin the assertions with the ```Spinen\MailAssertions\MailTracking``` trait.  You get the following assertions...
+
+* seeEmailContains
+* seeEmailEquals
+* seeEmailFrom
+* seeEmailSubject
+* seeEmailTo
+* seeEmailWasNotSent
+* seeEmailWasSent
+* seeEmailsSent
+
+NOTE: If there was more than 1 email sent, then the assertions look at the last email.
+
+## Example
+
+```php
+<?php
+use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Spinen\MailAssertions\MailTracking;
+
+class ExampleTest extends TestCase
+{
+    use MailTracking;
+    
+    /**
+     * A basic functional test example.
+     *
+     * @return void
+     */
+    public function testBasicExample()
+    {
+        $this->visit('/route-that-sends-an-email')
+             ->seeEmailWasSent()
+             ->seeEmailSubject('Hello World')
+             ->seeEmailTo('foo@bar.com')
+             ->seeEmailEquals('Click here to buy this jewelry.')
+             ->seeEmailContains('Click here');
+    }
+}
+```
