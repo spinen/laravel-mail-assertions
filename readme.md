@@ -19,7 +19,7 @@ PHPUnit mail assertions for testing email in Laravel.
 
 ## Install
 
-Install Garbage Man:
+Install the package:
 
 ```bash
     $ composer require spinen/laravel-mail-assertions
