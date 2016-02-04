@@ -26,8 +26,6 @@ use Swift_Message;
 trait MailTracking
 {
     // TODO: Add check for attachments (number of & name)
-    // TODO: Add check for BCC
-    // TODO: Add check for CC
     // TODO: Add check for header
     // TODO: Add check for message type
     // TODO: Add check for Priority
