@@ -136,7 +136,7 @@ class MailTrackingTest extends TestCase
      */
     public function it_checks_email_bcc_address()
     {
-        $message = $this->makeMessage('subject', 'body');
+        $message = $this->makeMessage();
         $message->setBcc('bcc@domain.tld');
         $this->mail_tracking->recordMail($message);
 
@@ -149,7 +149,7 @@ class MailTrackingTest extends TestCase
      */
     public function it_checks_email_cc_address()
     {
-        $message = $this->makeMessage('subject', 'body');
+        $message = $this->makeMessage();
         $message->setCc('cc@domain.tld');
         $this->mail_tracking->recordMail($message);
 
