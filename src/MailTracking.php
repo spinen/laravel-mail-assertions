@@ -90,7 +90,23 @@ trait MailTracking
     }
 
     /**
-     * Assert that the last email was cc to the given address.
+     * Assert that the last email was bcc'ed to the given address.
+     *
+     * @param string        $bcc
+     * @param Swift_Message $message
+     *
+     * @return PHPUnit_Framework_TestCase $this
+     */
+    protected function seeEmailBcc($bcc, Swift_Message $message = null)
+    {
+        $this->assertArrayHasKey($bcc, (array)$this->getEmail($message)
+                                                   ->getBcc(), "No email was bcc'ed to $bcc.");
+
+        return $this;
+    }
+
+    /**
+     * Assert that the last email was cc'ed to the given address.
      *
      * @param string        $cc
      * @param Swift_Message $message
@@ -100,7 +116,7 @@ trait MailTracking
     protected function seeEmailCc($cc, Swift_Message $message = null)
     {
         $this->assertArrayHasKey($cc, (array)$this->getEmail($message)
-                                                      ->getCc(), "No email was cc'ed to $cc.");
+                                                  ->getCc(), "No email was cc'ed to $cc.");
 
         return $this;
     }
