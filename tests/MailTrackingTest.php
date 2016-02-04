@@ -134,6 +134,19 @@ class MailTrackingTest extends TestCase
      * @test
      * @group unit
      */
+    public function it_checks_email_bcc_address()
+    {
+        $message = $this->makeMessage('subject', 'body');
+        $message->setBcc('bcc@domain.tld');
+        $this->mail_tracking->recordMail($message);
+
+        $this->assertEquals($this->mail_tracking, $this->callProtectedMethod('seeEmailBcc', ['bcc@domain.tld']));
+    }
+
+    /**
+     * @test
+     * @group unit
+     */
     public function it_checks_email_cc_address()
     {
         $message = $this->makeMessage('subject', 'body');
