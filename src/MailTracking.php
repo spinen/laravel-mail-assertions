@@ -169,6 +169,22 @@ trait MailTracking
     }
 
     /**
+     * Assert that the last email was set to reply to the given address.
+     *
+     * @param string        $reply_to
+     * @param Swift_Message $message
+     *
+     * @return PHPUnit_Framework_TestCase $this
+     */
+    protected function seeEmailReplyTo($reply_to, Swift_Message $message = null)
+    {
+        $this->assertArrayHasKey($reply_to, (array)$this->getEmail($message)
+                                                  ->getReplyTo(), "No email was set to reply to $reply_to.");
+
+        return $this;
+    }
+
+    /**
      * Assert that the given number of emails were sent.
      *
      * @param integer $count
