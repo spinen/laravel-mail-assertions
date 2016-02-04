@@ -90,6 +90,22 @@ trait MailTracking
     }
 
     /**
+     * Assert that the last email was cc to the given address.
+     *
+     * @param string        $cc
+     * @param Swift_Message $message
+     *
+     * @return PHPUnit_Framework_TestCase $this
+     */
+    protected function seeEmailCc($cc, Swift_Message $message = null)
+    {
+        $this->assertArrayHasKey($cc, (array)$this->getEmail($message)
+                                                      ->getCc(), "No email was cc'ed to $cc.");
+
+        return $this;
+    }
+
+    /**
      * Assert that the last email's body contains the given text.
      *
      * @param string        $excerpt
