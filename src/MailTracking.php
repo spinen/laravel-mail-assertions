@@ -29,7 +29,6 @@ trait MailTracking
     // TODO: Add check for header
     // TODO: Add check for message type
     // TODO: Add check for Priority
-    // TODO: Add check for ReplyTo
     // TODO: Allow checking specific message not just most recent one
 
     /**
