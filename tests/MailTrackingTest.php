@@ -196,6 +196,19 @@ class MailTrackingTest extends TestCase
      * @test
      * @group unit
      */
+    public function it_checks_email_reply_to_address()
+    {
+        $message = $this->makeMessage();
+        $message->setReplyTo('replyto@domain.tld');
+        $this->mail_tracking->recordMail($message);
+
+        $this->assertEquals($this->mail_tracking, $this->callProtectedMethod('seeEmailReplyTo', ['replyto@domain.tld']));
+    }
+
+    /**
+     * @test
+     * @group unit
+     */
     public function it_knows_how_many_emails_have_been_sent()
     {
         $this->assertEquals($this->mail_tracking, $this->callProtectedMethod('seeEmailsSent', [0]));
