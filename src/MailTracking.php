@@ -55,7 +55,7 @@ trait MailTracking
     /**
      * Retrieve the appropriate swift message.
      *
-     * @param Swift_Message $message
+     * @param Swift_Message|null $message
      *
      * @return Swift_Message
      */
@@ -89,8 +89,8 @@ trait MailTracking
     /**
      * Assert that the last email was bcc'ed to the given address.
      *
-     * @param string        $bcc
-     * @param Swift_Message $message
+     * @param string             $bcc
+     * @param Swift_Message|null $message
      *
      * @return PHPUnit_Framework_TestCase $this
      */
@@ -105,8 +105,8 @@ trait MailTracking
     /**
      * Assert that the last email was cc'ed to the given address.
      *
-     * @param string        $cc
-     * @param Swift_Message $message
+     * @param string             $cc
+     * @param Swift_Message|null $message
      *
      * @return PHPUnit_Framework_TestCase $this
      */
@@ -121,8 +121,8 @@ trait MailTracking
     /**
      * Assert that the last email's body contains the given text.
      *
-     * @param string        $excerpt
-     * @param Swift_Message $message
+     * @param string             $excerpt
+     * @param Swift_Message|null $message
      *
      * @return PHPUnit_Framework_TestCase $this
      */
@@ -137,8 +137,8 @@ trait MailTracking
     /**
      * Assert that the last email's body equals the given text.
      *
-     * @param string        $body
-     * @param Swift_Message $message
+     * @param string             $body
+     * @param Swift_Message|null $message
      *
      * @return PHPUnit_Framework_TestCase $this
      */
@@ -153,8 +153,8 @@ trait MailTracking
     /**
      * Assert that the last email was delivered by the given address.
      *
-     * @param string        $sender
-     * @param Swift_Message $message
+     * @param string             $sender
+     * @param Swift_Message|null $message
      *
      * @return PHPUnit_Framework_TestCase $this
      */
@@ -170,15 +170,15 @@ trait MailTracking
     /**
      * Assert that the last email was set to reply to the given address.
      *
-     * @param string        $reply_to
-     * @param Swift_Message $message
+     * @param string             $reply_to
+     * @param Swift_Message|null $message
      *
      * @return PHPUnit_Framework_TestCase $this
      */
     protected function seeEmailReplyTo($reply_to, Swift_Message $message = null)
     {
         $this->assertArrayHasKey($reply_to, (array)$this->getEmail($message)
-                                                  ->getReplyTo(), "No email was set to reply to $reply_to.");
+                                                        ->getReplyTo(), "No email was set to reply to $reply_to.");
 
         return $this;
     }
@@ -202,8 +202,8 @@ trait MailTracking
     /**
      * Assert that the last email's subject matches the given string.
      *
-     * @param string        $subject
-     * @param Swift_Message $message
+     * @param string             $subject
+     * @param Swift_Message|null $message
      *
      * @return PHPUnit_Framework_TestCase $this
      */
@@ -219,8 +219,8 @@ trait MailTracking
     /**
      * Assert that the last email was sent to the given recipient.
      *
-     * @param string        $recipient
-     * @param Swift_Message $message
+     * @param string             $recipient
+     * @param Swift_Message|null $message
      *
      * @return PHPUnit_Framework_TestCase $this
      */
