@@ -172,6 +172,18 @@ class MailTrackingTest extends TestCase
      * @test
      * @group unit
      */
+    public function it_checks_email_body_does_not_have_content()
+    {
+        $message = $this->makeMessage('subject', '');
+        $this->mail_tracking->recordMail($message);
+
+        $this->assertEquals($this->mail_tracking, $this->callProtectedMethod('seeEmailDoesNotContain', ['body']));
+    }
+
+    /**
+     * @test
+     * @group unit
+     */
     public function it_makes_sure_email_body_is_what_is_expected()
     {
         $message = $this->makeMessage('subject', 'full message body');
