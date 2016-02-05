@@ -135,6 +135,22 @@ trait MailTracking
     }
 
     /**
+     * Assert that the last email's body does not contain the given text.
+     *
+     * @param string             $excerpt
+     * @param Swift_Message|null $message
+     *
+     * @return PHPUnit_Framework_TestCase $this
+     */
+    protected function seeEmailDoesNotContain($excerpt, Swift_Message $message = null)
+    {
+        $this->assertNotContains($excerpt, $this->getEmail($message)
+                                                ->getBody(), "Email containing the provided text was found in the body.");
+
+        return $this;
+    }
+
+    /**
      * Assert that the last email's body equals the given text.
      *
      * @param string             $body
