@@ -134,6 +134,32 @@ class MailTrackingTest extends TestCase
      * @test
      * @group unit
      */
+    public function it_checks_email_bcc_address()
+    {
+        $message = $this->makeMessage();
+        $message->setBcc('bcc@domain.tld');
+        $this->mail_tracking->recordMail($message);
+
+        $this->assertEquals($this->mail_tracking, $this->callProtectedMethod('seeEmailBcc', ['bcc@domain.tld']));
+    }
+
+    /**
+     * @test
+     * @group unit
+     */
+    public function it_checks_email_cc_address()
+    {
+        $message = $this->makeMessage();
+        $message->setCc('cc@domain.tld');
+        $this->mail_tracking->recordMail($message);
+
+        $this->assertEquals($this->mail_tracking, $this->callProtectedMethod('seeEmailCc', ['cc@domain.tld']));
+    }
+
+    /**
+     * @test
+     * @group unit
+     */
     public function it_checks_email_body_for_content()
     {
         $message = $this->makeMessage('subject', 'body');
@@ -156,7 +182,7 @@ class MailTrackingTest extends TestCase
 
     /**
      * @test
-     * @group
+     * @group unit
      */
     public function it_checks_email_from_address()
     {
@@ -168,7 +194,20 @@ class MailTrackingTest extends TestCase
 
     /**
      * @test
-     * @group
+     * @group unit
+     */
+    public function it_checks_email_reply_to_address()
+    {
+        $message = $this->makeMessage();
+        $message->setReplyTo('replyto@domain.tld');
+        $this->mail_tracking->recordMail($message);
+
+        $this->assertEquals($this->mail_tracking, $this->callProtectedMethod('seeEmailReplyTo', ['replyto@domain.tld']));
+    }
+
+    /**
+     * @test
+     * @group unit
      */
     public function it_knows_how_many_emails_have_been_sent()
     {

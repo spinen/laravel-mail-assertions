@@ -29,9 +29,12 @@ Install the package:
 
 You mixin the assertions with the ```Spinen\MailAssertions\MailTracking``` trait.  You get the following assertions...
 
+* seeEmailBcc
+* seeEmailCc
 * seeEmailContains
 * seeEmailEquals
 * seeEmailFrom
+* seeEmailReplyTo
 * seeEmailSubject
 * seeEmailTo
 * seeEmailWasNotSent
