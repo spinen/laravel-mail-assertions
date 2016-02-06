@@ -16,7 +16,7 @@ use Swift_Message;
  * example & converted it to a package so that it would be easy to install. We have also expanded on the initial
  * assertions.
  *
- * I WANT IT CLEAR THAT THIS WOULD NOT HAVE HAPPENED WITHOUT THE INITIAL WORK OF JEFFERY WAY.  WE ARE NOT CLAIMING TO
+ * I WANT IT CLEAR THAT THIS WOULD NOT HAVE HAPPENED WITHOUT THE INITIAL WORK OF JEFFREY WAY. WE ARE NOT CLAIMING TO
  * BE THE CREATORS OF THE CONCEPT.
  *
  * @package Spinen\MailAssertions
@@ -41,8 +41,8 @@ trait MailTracking
     /**
      * Register a listener for new emails.
      *
-     * Called my PHPUnit before each test it run.  It registers the MailRecorder "plugin" with Swift, so that we can
-     * get a copy of each email that is sent during that test.
+     * This calls my PHPUnit before each test it runs. It registers the MailRecorder "plugin" with Swift, so that we
+     * can get a copy of each email that is sent during that test.
      *
      * @before
      */
