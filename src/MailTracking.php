@@ -224,14 +224,11 @@ trait MailTracking
      * @param Swift_Message|null $message
      *
      * @return PHPUnit_Framework_TestCase $this
+     * @deprecated in favor of seeEmailSubjectEquals
      */
     protected function seeEmailSubject($subject, Swift_Message $message = null)
     {
-        $this->assertEquals($subject, $this->getEmail($message)
-                                           ->getSubject(),
-                            "The last email sent did not contain a subject of $subject.");
-
-        return $this;
+        return $this->seeEmailSubjectEquals($subject, $message);
     }
 
     /**
@@ -264,6 +261,23 @@ trait MailTracking
         $this->assertNotContains($excerpt, $this->getEmail($message)
                                                 ->getSubject(),
                                  "The last email sent contained the provided text in its subject.");
+
+        return $this;
+    }
+
+    /**
+     * Assert that the last email's subject matches the given string.
+     *
+     * @param string             $subject
+     * @param Swift_Message|null $message
+     *
+     * @return PHPUnit_Framework_TestCase $this
+     */
+    protected function seeEmailSubjectEquals($subject, Swift_Message $message = null)
+    {
+        $this->assertEquals($subject, $this->getEmail($message)
+                                           ->getSubject(),
+                            "The last email sent did not contain a subject of $subject.");
 
         return $this;
     }
