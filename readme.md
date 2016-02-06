@@ -37,6 +37,8 @@ You mixin the assertions with the ```Spinen\MailAssertions\MailTracking``` trait
 * seeEmailFrom
 * seeEmailReplyTo
 * seeEmailSubject
+* seeEmailSubjectContains
+* seeEmailSubjectDoesNotContain
 * seeEmailTo
 * seeEmailWasNotSent
 * seeEmailWasSent
