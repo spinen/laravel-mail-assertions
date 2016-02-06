@@ -242,13 +242,38 @@ class MailTrackingTest extends TestCase
      * @test
      * @group unit
      */
+    public function it_makes_sure_email_subject_contains_expected_string()
+    {
+        $message = $this->makeMessage('full message subject');
+        $this->mail_tracking->recordMail($message);
+
+        $this->assertEquals($this->mail_tracking,
+                            $this->callProtectedMethod('seeEmailSubjectContains', ['subject']));
+    }
+
+    /**
+     * @test
+     * @group unit
+     */
+    public function it_makes_sure_email_subject_does_not_contain_string()
+    {
+        $message = $this->makeMessage('');
+        $this->mail_tracking->recordMail($message);
+
+        $this->assertEquals($this->mail_tracking, $this->callProtectedMethod('seeEmailSubjectDoesNotContain', ['subject']));
+    }
+
+    /**
+     * @test
+     * @group unit
+     */
     public function it_makes_sure_email_subject_is_what_is_expected()
     {
         $message = $this->makeMessage('full message subject');
         $this->mail_tracking->recordMail($message);
 
         $this->assertEquals($this->mail_tracking,
-                            $this->callProtectedMethod('seeEmailSubject', ['full message subject']));
+                            $this->callProtectedMethod('seeEmailSubjectEquals', ['full message subject']));
     }
 
     /**
