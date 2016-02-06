@@ -145,7 +145,8 @@ trait MailTracking
     protected function seeEmailDoesNotContain($excerpt, Swift_Message $message = null)
     {
         $this->assertNotContains($excerpt, $this->getEmail($message)
-                                                ->getBody(), "Email containing the provided text was found in the body.");
+                                                ->getBody(),
+                                 "Email containing the provided text was found in the body.");
 
         return $this;
     }
@@ -225,9 +226,41 @@ trait MailTracking
      */
     protected function seeEmailSubject($subject, Swift_Message $message = null)
     {
-        // TODO: Consider a subject contains like the message contains
         $this->assertEquals($subject, $this->getEmail($message)
                                            ->getSubject(), "No email with a subject of $subject was found.");
+
+        return $this;
+    }
+
+    /**
+     * Assert that the last email's subject contains the given string.
+     *
+     * @param string             $excerpt
+     * @param Swift_Message|null $message
+     *
+     * @return PHPUnit_Framework_TestCase $this
+     */
+    protected function seeEmailSubjectContains($excerpt, Swift_Message $message = null)
+    {
+        $this->assertContains($excerpt, $this->getEmail($message)
+                                             ->getSubject(), "No email containing the provided subject was found.");
+
+        return $this;
+    }
+
+    /**
+     * Assert that the last email's subject does not contain the given string.
+     *
+     * @param string             $excerpt
+     * @param Swift_Message|null $message
+     *
+     * @return PHPUnit_Framework_TestCase $this
+     */
+    protected function seeEmailSubjectDoesNotContain($excerpt, Swift_Message $message = null)
+    {
+        $this->assertNotContains($excerpt, $this->getEmail($message)
+                                                ->getSubject(),
+                                 "Email containing the provided text was found in the subject.");
 
         return $this;
     }
