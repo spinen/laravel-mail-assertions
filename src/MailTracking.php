@@ -53,7 +53,7 @@ trait MailTracking
     }
 
     /**
-     * Retrieve the appropriate swift message.
+     * Retrieve the appropriate Swift message.
      *
      * @param Swift_Message|null $message
      *
@@ -67,7 +67,7 @@ trait MailTracking
     }
 
     /**
-     * Retrieve the mostly recently sent swift message.
+     * Retrieve the mostly recently sent Swift message.
      */
     protected function lastEmail()
     {
@@ -75,7 +75,7 @@ trait MailTracking
     }
 
     /**
-     * Store a new swift message.
+     * Store a new Swift message.
      *
      * Collection of emails that were received by the MailRecorder plugin during a test.
      *
