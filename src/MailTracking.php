@@ -97,7 +97,7 @@ trait MailTracking
     protected function seeEmailBcc($bcc, Swift_Message $message = null)
     {
         $this->assertArrayHasKey($bcc, (array)$this->getEmail($message)
-                                                   ->getBcc(), "No email was bcc'ed to $bcc.");
+                                                   ->getBcc(), "The last email sent was not bcc'ed to $bcc.");
 
         return $this;
     }
@@ -113,7 +113,7 @@ trait MailTracking
     protected function seeEmailCc($cc, Swift_Message $message = null)
     {
         $this->assertArrayHasKey($cc, (array)$this->getEmail($message)
-                                                  ->getCc(), "No email was cc'ed to $cc.");
+                                                  ->getCc(), "The last email sent was not cc'ed to $cc.");
 
         return $this;
     }
@@ -129,7 +129,7 @@ trait MailTracking
     protected function seeEmailContains($excerpt, Swift_Message $message = null)
     {
         $this->assertContains($excerpt, $this->getEmail($message)
-                                             ->getBody(), "No email containing the provided body was found.");
+                                             ->getBody(), "The last email sent did not contain the provided body.");
 
         return $this;
     }
@@ -145,7 +145,7 @@ trait MailTracking
     protected function seeEmailDoesNotContain($excerpt, Swift_Message $message = null)
     {
         $this->assertNotContains($excerpt, $this->getEmail($message)
-                                                ->getBody(), "Email containing the provided text was found in the body.");
+                                                ->getBody(), "The last email sent contained the provided text in its body.");
 
         return $this;
     }
@@ -161,7 +161,7 @@ trait MailTracking
     protected function seeEmailEquals($body, Swift_Message $message = null)
     {
         $this->assertEquals($body, $this->getEmail($message)
-                                        ->getBody(), "No email with the provided body was sent.");
+                                        ->getBody(), "The last email sent did not match the given email.");
 
         return $this;
     }
@@ -178,7 +178,7 @@ trait MailTracking
     {
         // TODO: Allow from to be an array to check email & name
         $this->assertArrayHasKey($sender, (array)$this->getEmail($message)
-                                                      ->getFrom(), "No email was sent from $sender.");
+                                                      ->getFrom(), "The last email sent was not sent from $sender.");
 
         return $this;
     }
@@ -194,7 +194,7 @@ trait MailTracking
     protected function seeEmailReplyTo($reply_to, Swift_Message $message = null)
     {
         $this->assertArrayHasKey($reply_to, (array)$this->getEmail($message)
-                                                        ->getReplyTo(), "No email was set to reply to $reply_to.");
+                                                        ->getReplyTo(), "The last email sent was not set to reply to $reply_to.");
 
         return $this;
     }
@@ -227,7 +227,7 @@ trait MailTracking
     {
         // TODO: Consider a subject contains like the message contains
         $this->assertEquals($subject, $this->getEmail($message)
-                                           ->getSubject(), "No email with a subject of $subject was found.");
+                                           ->getSubject(), "The last email sent did not contain a subject of $subject.");
 
         return $this;
     }
@@ -243,7 +243,7 @@ trait MailTracking
     protected function seeEmailTo($recipient, Swift_Message $message = null)
     {
         $this->assertArrayHasKey($recipient, (array)$this->getEmail($message)
-                                                         ->getTo(), "No email was sent to $recipient.");
+                                                         ->getTo(), "The last email sent was not sent to $recipient.");
 
         return $this;
     }
@@ -255,7 +255,7 @@ trait MailTracking
      */
     protected function seeEmailWasNotSent()
     {
-        $this->assertEmpty($this->emails, 'Did not expect any emails to have been sent.');
+        $this->assertEmpty($this->emails, 'Did not expect any emails to have been sent, but found '.count($this->emails).'.');
 
         return $this;
     }
@@ -267,7 +267,7 @@ trait MailTracking
      */
     protected function seeEmailWasSent()
     {
-        $this->assertNotEmpty($this->emails, 'No emails have been sent.');
+        $this->assertNotEmpty($this->emails, 'Expected at least one email to be sent, but found none.');
 
         return $this;
     }
