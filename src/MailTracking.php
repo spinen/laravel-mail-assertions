@@ -255,7 +255,9 @@ trait MailTracking
      */
     protected function seeEmailWasNotSent()
     {
-        $this->assertEmpty($this->emails, 'Did not expect any emails to have been sent, but found '.count($this->emails).'.');
+        $emailsSent = count($this->emails);
+
+        $this->assertEmpty($this->emails, "Did not expect any emails to have been sent, but found $emailsSent");
 
         return $this;
     }
