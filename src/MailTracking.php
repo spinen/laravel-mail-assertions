@@ -206,7 +206,7 @@ trait MailTracking
      *
      * @return PHPUnit_Framework_TestCase $this
      */
-    protected function seeEmailsSent($count)
+    protected function seeEmailCountEquals($count)
     {
         $emailsSent = count($this->emails);
 
