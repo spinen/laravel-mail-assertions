@@ -11,9 +11,9 @@ use Swift_Message;
  *
  * Trait to mixin to your test to allow for custom assertions when using PHPUnit with Laravel.
  *
- * This originally started out as a copy & paste from a video series that Jeffery Way did on laracasts.com.  If you do
- * not have an account on Laracasts, you should get one.  It is an amazing resource to learn from.  We used that
- * example & converted it to a package so that it would be easy to install.  We have also expanded on initial
+ * This originally started out as a copy & paste from a video series that Jeffrey Way did on laracasts.com. If you do
+ * not have an account on Laracasts, you should get one. It is an amazing resource to learn from. We used that
+ * example & converted it to a package so that it would be easy to install. We have also expanded on the initial
  * assertions.
  *
  * I WANT IT CLEAR THAT THIS WOULD NOT HAVE HAPPENED WITHOUT THE INITIAL WORK OF JEFFERY WAY.  WE ARE NOT CLAIMING TO
