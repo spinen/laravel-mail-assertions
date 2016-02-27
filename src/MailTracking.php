@@ -207,6 +207,19 @@ trait MailTracking
      * @param integer $count
      *
      * @return PHPUnit_Framework_TestCase $this
+     * @deprecated in favor of seeEmailCountEquals
+     */
+    protected function seeEmailsSent($count)
+    {
+        return $this->seeEmailCountEquals($count);
+    }
+
+    /**
+     * Assert that the given number of emails were sent.
+     *
+     * @param integer $count
+     *
+     * @return PHPUnit_Framework_TestCase $this
      */
     protected function seeEmailCountEquals($count)
     {
