@@ -182,7 +182,7 @@ trait MailTracking
                                                       ->getFrom(), "The last email sent was not sent from $sender.");
 
         return $this;
-	 }
+    }
 
     /**
      * Assert that the last email had the given priority level.
@@ -198,7 +198,8 @@ trait MailTracking
         $actual_priority = $this->getEmail($message)
                                 ->getPriority();
 
-        $this->assertEquals($priority, $actual_priority, "The last email sent had a priority of $actual_priority but expected $priority.");
+        $this->assertEquals($priority, $actual_priority,
+                            "The last email sent had a priority of $actual_priority but expected $priority.");
 
         return $this;
     }
