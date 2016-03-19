@@ -199,7 +199,7 @@ trait MailTracking
                                 ->getPriority();
 
         $this->assertEquals($priority, $actual_priority,
-                            "The last email sent had a priority of $actual_priority but expected $priority.");
+            "The last email sent had a priority of $actual_priority but expected $priority.");
 
         return $this;
     }
