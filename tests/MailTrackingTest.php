@@ -292,7 +292,7 @@ class MailTrackingTest extends TestCase
      * @test
      * @group unit
      */
-    public function it_knows_if_email_has_not_been_sent_or_not()
+    public function it_knows_if_email_has_been_sent_or_not()
     {
         $this->assertEquals($this->mail_tracking, $this->callProtectedMethod('seeEmailWasNotSent'));
 
