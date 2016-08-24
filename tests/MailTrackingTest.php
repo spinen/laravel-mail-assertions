@@ -160,6 +160,19 @@ class MailTrackingTest extends TestCase
      * @test
      * @group unit
      */
+    public function it_checks_email_content_type()
+    {
+        $message = $this->makeMessage();
+        $message->setContentType('text/html');
+        $this->mail_tracking->recordMail($message);
+
+        $this->assertEquals($this->mail_tracking, $this->callProtectedMethod('seeEmailContentTypeEquals', ['text/html']));
+    }
+
+    /**
+     * @test
+     * @group unit
+     */
     public function it_checks_email_body_for_content()
     {
         $message = $this->makeMessage('subject', 'body');
