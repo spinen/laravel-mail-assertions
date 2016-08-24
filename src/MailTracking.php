@@ -135,6 +135,24 @@ trait MailTracking
     }
 
     /**
+     * Assert that the last email's content type equals the given text.
+     * For example, "text/plain" and "text/html" are valid content types for an email.
+     *
+     * @param string             $content_type
+     * @param Swift_Message|null $message
+     *
+     * @return PHPUnit_Framework_TestCase $this
+     */
+    protected function seeEmailContentTypeEquals($content_type, Swift_Message $message = null)
+    {
+        $this->assertEquals($content_type, $this->getEmail($message)
+                                                ->getContentType(),
+            "The last email sent did not contain the provided body.");
+
+        return $this;
+    }
+
+    /**
      * Assert that the last email's body does not contain the given text.
      *
      * @param string             $excerpt
