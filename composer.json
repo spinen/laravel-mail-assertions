@@ -21,7 +21,7 @@
         "swiftmailer/swiftmailer": "~5.1"
     },
     "require-dev": {
-        "mockery/mockery": "v0.9.1",
+        "mockery/mockery": "^0.9.1",
         "phpunit/phpunit": "~4.0|~5.0",
         "psy/psysh": "^0.5.1",
         "satooshi/php-coveralls": "^0.6.1",
