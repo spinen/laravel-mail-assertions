@@ -203,6 +203,26 @@ trait MailTracking
     }
 
     /**
+     * Assert that the last email had the given priority level.
+     * The value is an integer where 1 is the highest priority and 5 is the lowest.
+     *
+     * @param integer            $priority
+     * @param Swift_Message|null $message
+     *
+     * @return PHPUnit_Framework_TestCase $this
+     */
+    protected function seeEmailPriorityEquals($priority, Swift_Message $message = null)
+    {
+        $actual_priority = $this->getEmail($message)
+                                ->getPriority();
+
+        $this->assertEquals($priority, $actual_priority,
+            "The last email sent had a priority of $actual_priority but expected $priority.");
+
+        return $this;
+    }
+
+    /**
      * Assert that the last email was set to reply to the given address.
      *
      * @param string             $reply_to

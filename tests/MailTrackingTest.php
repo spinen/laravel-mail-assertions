@@ -215,6 +215,25 @@ class MailTrackingTest extends TestCase
         $this->mail_tracking->recordMail($message);
 
         $this->assertEquals($this->mail_tracking, $this->callProtectedMethod('seeEmailFrom', ['from@domain.tld']));
+	 }
+
+    /**
+     * @test
+     * @group unit
+     */
+    public function it_checks_email_priority()
+    {
+        $message = $this->makeMessage('subject', 'body', 'to@domain.tld', 'from@domain.tld');
+        $message->setPriority(1);
+        $this->mail_tracking->recordMail($message);
+
+        $this->assertEquals($this->mail_tracking, $this->callProtectedMethod('seeEmailPriorityEquals', [1]));
+
+        // The priority can't be set to anything greater than 5
+        $message->setPriority(6);
+        $this->mail_tracking->recordMail($message);
+
+        $this->assertEquals($this->mail_tracking, $this->callProtectedMethod('seeEmailPriorityEquals', [5]));
     }
 
     /**
@@ -305,7 +324,7 @@ class MailTrackingTest extends TestCase
      * @test
      * @group unit
      */
-    public function it_knows_if_email_has_not_been_sent_or_not()
+    public function it_knows_if_email_has_been_sent_or_not()
     {
         $this->assertEquals($this->mail_tracking, $this->callProtectedMethod('seeEmailWasNotSent'));
 
