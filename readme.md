@@ -32,9 +32,12 @@ You mixin the assertions with the ```Spinen\MailAssertions\MailTracking``` trait
 * seeEmailBcc
 * seeEmailCc
 * seeEmailContains
+* seeEmailContentTypeEquals
+* seeEmailCountEquals
 * seeEmailDoesNotContain
 * seeEmailEquals
 * seeEmailFrom
+* seeEmailPriorityEquals
 * seeEmailReplyTo
 * seeEmailSubjectContains
 * seeEmailSubjectDoesNotContain
@@ -42,7 +45,6 @@ You mixin the assertions with the ```Spinen\MailAssertions\MailTracking``` trait
 * seeEmailTo
 * seeEmailWasNotSent
 * seeEmailWasSent
-* seeEmailsSent
 
 NOTE: If there was more than 1 email sent, then the assertions look at the last email.
 

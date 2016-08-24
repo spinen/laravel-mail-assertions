@@ -3,9 +3,11 @@
 namespace Spinen\MailAssertions;
 
 use Mockery;
+use PHPUnit_Framework_Error;
 use PHPUnit_Framework_TestCase;
 use StdClass;
 use Swift_Events_SendEvent;
+use TypeError;
 
 /**
  * Class MailRecorderTest
@@ -32,7 +34,16 @@ class MailRecorderTest extends TestCase
      */
     public function it_cannot_be_constructed_without_a_PHPUnit_Framework_TestCase()
     {
-        new MailRecorder();
+        if (class_exists(TypeError::class)) {
+            try {
+                new MailRecorder();
+            } catch (TypeError $e) {
+                throw new PHPUnit_Framework_Error('Argument 1 passed to method must be an array, but not', 0,
+                    $e->getFile(), $e->getLine());
+            }
+        } else {
+            new MailRecorder();
+        }
     }
 
     /**
@@ -42,7 +53,16 @@ class MailRecorderTest extends TestCase
      */
     public function it_cannot_be_constructed_with_class_other_than_a_PHPUnit_Framework_TestCase()
     {
-        new MailRecorder(new StdClass());
+        if (class_exists(TypeError::class)) {
+            try {
+                new MailRecorder(new StdClass());
+            } catch (TypeError $e) {
+                throw new PHPUnit_Framework_Error('Argument 1 passed to method must be an array, but not', 0,
+                    $e->getFile(), $e->getLine());
+            }
+        } else {
+            new MailRecorder(new StdClass());
+        }
     }
 
     /**
