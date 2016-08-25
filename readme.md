@@ -25,6 +25,10 @@ Install the package:
     $ composer require spinen/laravel-mail-assertions
 ```
 
+## Configure
+
+In order for the package to be able to make assertions on the email, it has to be able to "read" the messages.  It does so by parsing the laravel log, so the mail driver has to be log.
+
 ## Using
 
 You mixin the assertions with the ```Spinen\MailAssertions\MailTracking``` trait.  You get the following assertions...
@@ -60,7 +64,7 @@ use Spinen\MailAssertions\MailTracking;
 class ExampleTest extends TestCase
 {
     use MailTracking;
-    
+
     /**
      * A basic functional test example.
      *
