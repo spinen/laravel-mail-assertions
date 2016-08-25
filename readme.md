@@ -27,7 +27,7 @@ Install the package:
 
 ## Configuration
 
-In order for the package to be able to make assertions on the email, it has to be able to "read" the messages. It does so by parsing the laravel log, so the mail driver has to be log.
+In order for the package to be able to make assertions on your emails, it has to be able to "read" the messages. It does so by parsing the laravel log, so your mail driver has to be "log" for this package to function.
 
 ## Usage
 
