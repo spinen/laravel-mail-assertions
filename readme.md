@@ -17,7 +17,7 @@ PHPUnit mail assertions for testing email in Laravel.
 | Develop | [![Build Status](https://travis-ci.org/spinen/laravel-mail-assertions.svg?branch=develop)](https://travis-ci.org/spinen/laravel-mail-assertions) | [![Coverage Status](https://coveralls.io/repos/spinen/laravel-mail-assertions/badge.svg?branch=develop&service=github)](https://coveralls.io/github/spinen/laravel-mail-assertions?branch=develop) | [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/spinen/laravel-mail-assertions/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/spinen/laravel-mail-assertions/?branch=develop) |
 | Master | [![Build Status](https://travis-ci.org/spinen/laravel-mail-assertions.svg?branch=master)](https://travis-ci.org/spinen/laravel-mail-assertions) | [![Coverage Status](https://coveralls.io/repos/spinen/laravel-mail-assertions/badge.svg?branch=master&service=github)](https://coveralls.io/github/spinen/laravel-mail-assertions?branch=master) | [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/spinen/laravel-mail-assertions/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/spinen/laravel-mail-assertions/?branch=master) |
 
-## Install
+## Installation
 
 Install the package:
 
@@ -25,11 +25,11 @@ Install the package:
     $ composer require spinen/laravel-mail-assertions
 ```
 
-## Configure
+## Configuration
 
 In order for the package to be able to make assertions on the email, it has to be able to "read" the messages.  It does so by parsing the laravel log, so the mail driver has to be log.
 
-## Using
+## Usage
 
 You mixin the assertions with the ```Spinen\MailAssertions\MailTracking``` trait.  You get the following assertions...
 
