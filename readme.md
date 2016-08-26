@@ -4,7 +4,7 @@ NOTE: This is based off a video titled ["Testing Email With Custom Assertions"](
 
 [![Latest Stable Version](https://poser.pugx.org/spinen/laravel-mail-assertions/v/stable)](https://packagist.org/packages/spinen/laravel-mail-assertions)
 [![Total Downloads](https://poser.pugx.org/spinen/laravel-mail-assertions/downloads)](https://packagist.org/packages/spinen/laravel-mail-assertions)
-[![Latest Unstable Version](https://poser.pugx.org/spinen/laravel-mail-assertions/v/unstable)](https://packagist.org/packages/spinen/laravel-mail-assertions)
+[![Latest Unstable Version](https://poser.pugx.org/spinen/laravel-mail-assertions/v/unstable)](https://packagist.org/packages/spinen/laravel-mail-assertions#dev-master)
 [![Dependency Status](https://www.versioneye.com/php/spinen:laravel-mail-assertions/0.1.1/badge.svg)](https://www.versioneye.com/php/spinen:laravel-mail-assertions/0.1.1)
 [![License](https://poser.pugx.org/spinen/laravel-mail-assertions/license)](https://packagist.org/packages/spinen/laravel-mail-assertions)
 
@@ -17,7 +17,7 @@ PHPUnit mail assertions for testing email in Laravel.
 | Develop | [![Build Status](https://travis-ci.org/spinen/laravel-mail-assertions.svg?branch=develop)](https://travis-ci.org/spinen/laravel-mail-assertions) | [![Coverage Status](https://coveralls.io/repos/spinen/laravel-mail-assertions/badge.svg?branch=develop&service=github)](https://coveralls.io/github/spinen/laravel-mail-assertions?branch=develop) | [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/spinen/laravel-mail-assertions/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/spinen/laravel-mail-assertions/?branch=develop) |
 | Master | [![Build Status](https://travis-ci.org/spinen/laravel-mail-assertions.svg?branch=master)](https://travis-ci.org/spinen/laravel-mail-assertions) | [![Coverage Status](https://coveralls.io/repos/spinen/laravel-mail-assertions/badge.svg?branch=master&service=github)](https://coveralls.io/github/spinen/laravel-mail-assertions?branch=master) | [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/spinen/laravel-mail-assertions/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/spinen/laravel-mail-assertions/?branch=master) |
 
-## Install
+## Installation
 
 Install the package:
 
@@ -25,7 +25,11 @@ Install the package:
     $ composer require spinen/laravel-mail-assertions
 ```
 
-## Using
+## Configuration
+
+In order for the package to be able to make assertions on your emails, it has to be able to "read" the messages. It does so by parsing the laravel log, so your mail driver has to be "log" for this package to function.
+
+## Usage
 
 You mixin the assertions with the ```Spinen\MailAssertions\MailTracking``` trait.  You get the following assertions...
 
@@ -60,7 +64,7 @@ use Spinen\MailAssertions\MailTracking;
 class ExampleTest extends TestCase
 {
     use MailTracking;
-    
+
     /**
      * A basic functional test example.
      *
