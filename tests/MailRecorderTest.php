@@ -38,8 +38,12 @@ class MailRecorderTest extends TestCase
             try {
                 new MailRecorder();
             } catch (TypeError $e) {
-                throw new PHPUnit_Framework_Error('Argument 1 passed to method must be an array, but not', 0,
-                    $e->getFile(), $e->getLine());
+                throw new PHPUnit_Framework_Error(
+                    'Argument 1 passed to method must be an array, but not',
+                    0,
+                    $e->getFile(),
+                    $e->getLine()
+                );
             }
         } else {
             new MailRecorder();
@@ -57,8 +61,12 @@ class MailRecorderTest extends TestCase
             try {
                 new MailRecorder(new StdClass());
             } catch (TypeError $e) {
-                throw new PHPUnit_Framework_Error('Argument 1 passed to method must be an array, but not', 0,
-                    $e->getFile(), $e->getLine());
+                throw new PHPUnit_Framework_Error(
+                    'Argument 1 passed to method must be an array, but not',
+                    0,
+                    $e->getFile(),
+                    $e->getLine()
+                );
             }
         } else {
             new MailRecorder(new StdClass());

@@ -101,7 +101,7 @@ class MailTrackingTest extends TestCase
 
         $swift_mock->shouldReceive('registerPlugin')
                    ->once()
-                   ->with(Mockery::on(function($closure) {
+                   ->with(Mockery::on(function ($closure) {
                        return is_a($closure, MailRecorder::class);
                    }))
                    ->andReturnNull();
@@ -215,7 +215,7 @@ class MailTrackingTest extends TestCase
         $this->mail_tracking->recordMail($message);
 
         $this->assertEquals($this->mail_tracking, $this->callProtectedMethod('seeEmailFrom', ['from@domain.tld']));
-	 }
+    }
 
     /**
      * @test
@@ -279,8 +279,10 @@ class MailTrackingTest extends TestCase
         $message = $this->makeMessage('full message subject');
         $this->mail_tracking->recordMail($message);
 
-        $this->assertEquals($this->mail_tracking,
-                            $this->callProtectedMethod('seeEmailSubjectContains', ['subject']));
+        $this->assertEquals(
+            $this->mail_tracking,
+            $this->callProtectedMethod('seeEmailSubjectContains', ['subject'])
+        );
     }
 
     /**
@@ -304,8 +306,10 @@ class MailTrackingTest extends TestCase
         $message = $this->makeMessage('full message subject');
         $this->mail_tracking->recordMail($message);
 
-        $this->assertEquals($this->mail_tracking,
-                            $this->callProtectedMethod('seeEmailSubjectEquals', ['full message subject']));
+        $this->assertEquals(
+            $this->mail_tracking,
+            $this->callProtectedMethod('seeEmailSubjectEquals', ['full message subject'])
+        );
     }
 
     /**
