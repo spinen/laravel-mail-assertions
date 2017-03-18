@@ -21,7 +21,8 @@ class MailTrackingStub extends PHPUnit_Framework_TestCase
      *
      * @return array
      */
-    public function exposeMessage() {
+    public function exposeMessage()
+    {
         return $this->emails;
     }
 }
