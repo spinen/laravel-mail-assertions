@@ -21,9 +21,9 @@ class MailRecorder implements Swift_Events_EventListener
     /**
      * MailRecorder constructor.
      *
-     * @param PHPUnit_Framework_TestCase $test
+     * @param $test
      */
-    public function __construct(PHPUnit_Framework_TestCase $test)
+    public function __construct($test)
     {
         $this->test = $test;
     }
