@@ -48,9 +48,9 @@ trait MailTracking
      */
      public function setUpMailTracking()
      {
-         $this->afterApplicationCreated(function() {
-             Mail::getSwiftMailer()
-                 ->registerPlugin(new MailRecorder($this));
+        $this->afterApplicationCreated(function () {
+            Mail::getSwiftMailer()
+            ->registerPlugin(new MailRecorder($this));
          });
      }
 
