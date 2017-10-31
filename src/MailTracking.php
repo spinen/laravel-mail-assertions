@@ -46,11 +46,13 @@ trait MailTracking
      *
      * @before
      */
-    public function setUpMailTracking()
-    {
-        Mail::getSwiftMailer()
-            ->registerPlugin(new MailRecorder($this));
-    }
+     public function setUpMailTracking()
+     {
+         $this->afterApplicationCreated(function() {
+             Mail::getSwiftMailer()
+                 ->registerPlugin(new MailRecorder($this));
+         });
+     }
 
     /**
      * Retrieve the appropriate Swift message.
