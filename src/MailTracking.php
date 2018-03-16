@@ -8,7 +8,8 @@ use Swift_Message;
 /**
  * Class MailTracking
  *
- * Trait to mixin to your test to allow for custom assertions when using PHPUnit with Laravel.
+ * Trait to mixin to your test to allow for custom assertions when using PHPUnit with Laravel. This trait assumes
+ * you are extending from the PHPUnit TestCase class (or a child of it).
  *
  * This originally started out as a copy & paste from a video series that Jeffrey Way did on laracasts.com. If you do
  * not have an account on Laracasts, you should get one. It is an amazing resource to learn from. We used that
