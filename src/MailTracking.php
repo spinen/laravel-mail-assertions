@@ -178,7 +178,7 @@ trait MailTracking
     {
         $this->assertNotContains($excerpt, $this->getEmail($message)
                                                 ->getBody(),
-            "The last email sent contained the provided text in its body.");
+                                 "The last email sent contained the provided text in its body.");
 
         return $this;
     }
@@ -248,7 +248,7 @@ trait MailTracking
     {
         $this->assertArrayHasKey($reply_to, (array)$this->getEmail($message)
                                                         ->getReplyTo(),
-            "The last email sent was not set to reply to $reply_to.");
+                                 "The last email sent was not set to reply to $reply_to.");
 
         return $this;
     }
@@ -308,7 +308,7 @@ trait MailTracking
     {
         $this->assertContains($excerpt, $this->getEmail($message)
                                              ->getSubject(),
-            "The last email sent did not contain the provided subject.");
+                              "The last email sent did not contain the provided subject.");
 
         return $this;
     }
@@ -325,7 +325,7 @@ trait MailTracking
     {
         $this->assertNotContains($excerpt, $this->getEmail($message)
                                                 ->getSubject(),
-            "The last email sent contained the provided text in its subject.");
+                                 "The last email sent contained the provided text in its subject.");
 
         return $this;
     }
@@ -342,7 +342,7 @@ trait MailTracking
     {
         $this->assertEquals($subject, $this->getEmail($message)
                                            ->getSubject(),
-            "The last email sent did not contain a subject of $subject.");
+                            "The last email sent did not contain a subject of $subject.");
 
         return $this;
     }
