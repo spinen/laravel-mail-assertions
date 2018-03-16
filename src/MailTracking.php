@@ -3,13 +3,13 @@
 namespace Spinen\MailAssertions;
 
 use Illuminate\Support\Facades\Mail;
-use PHPUnit_Framework_TestCase;
 use Swift_Message;
 
 /**
  * Class MailTracking
  *
- * Trait to mixin to your test to allow for custom assertions when using PHPUnit with Laravel.
+ * Trait to mixin to your test to allow for custom assertions when using PHPUnit with Laravel. This trait assumes
+ * you are extending from the PHPUnit TestCase class (or a child of it).
  *
  * This originally started out as a copy & paste from a video series that Jeffrey Way did on laracasts.com. If you do
  * not have an account on Laracasts, you should get one. It is an amazing resource to learn from. We used that
@@ -48,9 +48,21 @@ trait MailTracking
      */
     public function setUpMailTracking()
     {
-        $this->afterApplicationCreated(function () {
+        $register_plugin = function () {
             Mail::getSwiftMailer()
                 ->registerPlugin(new MailRecorder($this));
+        };
+
+        // To support Phpunit 5 and Laravel < 5.2, register the plugin normally
+        if (!method_exists($this, 'afterApplicationCreated')) {
+            $register_plugin();
+
+            return;
+        }
+
+        // For PhpUnit 6 and Laravel > 5.1, register the plugin after the app is booted
+        $this->afterApplicationCreated(function () use ($register_plugin) {
+            $register_plugin();
         });
     }
 
@@ -94,7 +106,7 @@ trait MailTracking
      * @param string             $bcc
      * @param Swift_Message|null $message
      *
-     * @return PHPUnit_Framework_TestCase $this
+     * @return $this
      */
     protected function seeEmailBcc($bcc, Swift_Message $message = null)
     {
@@ -110,7 +122,7 @@ trait MailTracking
      * @param string             $cc
      * @param Swift_Message|null $message
      *
-     * @return PHPUnit_Framework_TestCase $this
+     * @return $this
      */
     protected function seeEmailCc($cc, Swift_Message $message = null)
     {
@@ -126,7 +138,7 @@ trait MailTracking
      * @param string             $excerpt
      * @param Swift_Message|null $message
      *
-     * @return PHPUnit_Framework_TestCase $this
+     * @return $this
      */
     protected function seeEmailContains($excerpt, Swift_Message $message = null)
     {
@@ -143,7 +155,7 @@ trait MailTracking
      * @param string             $content_type
      * @param Swift_Message|null $message
      *
-     * @return PHPUnit_Framework_TestCase $this
+     * @return $this
      */
     protected function seeEmailContentTypeEquals($content_type, Swift_Message $message = null)
     {
@@ -160,7 +172,7 @@ trait MailTracking
      * @param string             $excerpt
      * @param Swift_Message|null $message
      *
-     * @return PHPUnit_Framework_TestCase $this
+     * @return $this
      */
     protected function seeEmailDoesNotContain($excerpt, Swift_Message $message = null)
     {
@@ -177,7 +189,7 @@ trait MailTracking
      * @param string             $body
      * @param Swift_Message|null $message
      *
-     * @return PHPUnit_Framework_TestCase $this
+     * @return $this
      */
     protected function seeEmailEquals($body, Swift_Message $message = null)
     {
@@ -193,7 +205,7 @@ trait MailTracking
      * @param string             $sender
      * @param Swift_Message|null $message
      *
-     * @return PHPUnit_Framework_TestCase $this
+     * @return $this
      */
     protected function seeEmailFrom($sender, Swift_Message $message = null)
     {
@@ -211,7 +223,7 @@ trait MailTracking
      * @param integer            $priority
      * @param Swift_Message|null $message
      *
-     * @return PHPUnit_Framework_TestCase $this
+     * @return $this
      */
     protected function seeEmailPriorityEquals($priority, Swift_Message $message = null)
     {
@@ -230,7 +242,7 @@ trait MailTracking
      * @param string             $reply_to
      * @param Swift_Message|null $message
      *
-     * @return PHPUnit_Framework_TestCase $this
+     * @return $this
      */
     protected function seeEmailReplyTo($reply_to, Swift_Message $message = null)
     {
@@ -246,7 +258,7 @@ trait MailTracking
      *
      * @param integer $count
      *
-     * @return PHPUnit_Framework_TestCase $this
+     * @return TestCase $this
      * @deprecated in favor of seeEmailCountEquals
      */
     protected function seeEmailsSent($count)
@@ -259,7 +271,7 @@ trait MailTracking
      *
      * @param integer $count
      *
-     * @return PHPUnit_Framework_TestCase $this
+     * @return $this
      */
     protected function seeEmailCountEquals($count)
     {
@@ -276,7 +288,7 @@ trait MailTracking
      * @param string             $subject
      * @param Swift_Message|null $message
      *
-     * @return PHPUnit_Framework_TestCase $this
+     * @return TestCase $this
      * @deprecated in favor of seeEmailSubjectEquals
      */
     protected function seeEmailSubject($subject, Swift_Message $message = null)
@@ -290,7 +302,7 @@ trait MailTracking
      * @param string             $excerpt
      * @param Swift_Message|null $message
      *
-     * @return PHPUnit_Framework_TestCase $this
+     * @return $this
      */
     protected function seeEmailSubjectContains($excerpt, Swift_Message $message = null)
     {
@@ -307,7 +319,7 @@ trait MailTracking
      * @param string             $excerpt
      * @param Swift_Message|null $message
      *
-     * @return PHPUnit_Framework_TestCase $this
+     * @return $this
      */
     protected function seeEmailSubjectDoesNotContain($excerpt, Swift_Message $message = null)
     {
@@ -324,7 +336,7 @@ trait MailTracking
      * @param string             $subject
      * @param Swift_Message|null $message
      *
-     * @return PHPUnit_Framework_TestCase $this
+     * @return $this
      */
     protected function seeEmailSubjectEquals($subject, Swift_Message $message = null)
     {
@@ -341,7 +353,7 @@ trait MailTracking
      * @param string             $recipient
      * @param Swift_Message|null $message
      *
-     * @return PHPUnit_Framework_TestCase $this
+     * @return $this
      */
     protected function seeEmailTo($recipient, Swift_Message $message = null)
     {
@@ -354,7 +366,7 @@ trait MailTracking
     /**
      * Assert that no emails were sent.
      *
-     * @return PHPUnit_Framework_TestCase $this
+     * @return $this
      */
     protected function seeEmailWasNotSent()
     {
@@ -368,7 +380,7 @@ trait MailTracking
     /**
      * Assert that at least one email was sent.
      *
-     * @return PHPUnit_Framework_TestCase $this
+     * @return $this
      */
     protected function seeEmailWasSent()
     {

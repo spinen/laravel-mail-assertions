@@ -2,15 +2,15 @@
 
 namespace Spinen\MailAssertions\Stubs;
 
-use PHPUnit_Framework_TestCase;
 use Spinen\MailAssertions\MailTracking;
+use Spinen\MailAssertions\TestCase;
 
 /**
  * Class MailTrackingStub
  *
  * @package Spinen\MailAssertions\Stubs
  */
-class MailTrackingStub extends PHPUnit_Framework_TestCase
+class MailTrackingStub extends TestCase
 {
     use MailTracking;
 

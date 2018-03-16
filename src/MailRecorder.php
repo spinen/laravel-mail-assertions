@@ -2,7 +2,6 @@
 
 namespace Spinen\MailAssertions;
 
-use PHPUnit_Framework_TestCase;
 use Swift_Events_EventListener;
 use Swift_Events_SendEvent;
 
@@ -14,16 +13,16 @@ use Swift_Events_SendEvent;
 class MailRecorder implements Swift_Events_EventListener
 {
     /**
-     * @var PHPUnit_Framework_TestCase
+     * @var mixed
      */
     protected $test;
 
     /**
      * MailRecorder constructor.
      *
-     * @param PHPUnit_Framework_TestCase $test
+     * @param mixed $test The PhpUnit TestCase class to use
      */
-    public function __construct(PHPUnit_Framework_TestCase $test)
+    public function __construct($test)
     {
         $this->test = $test;
     }
