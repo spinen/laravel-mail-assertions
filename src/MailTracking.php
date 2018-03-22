@@ -103,15 +103,19 @@ trait MailTracking
     /**
      * Assert that the last email was bcc'ed to the given address.
      *
-     * @param string             $bcc
+     * @param string|array       $bcc_list The BCC or array of BCCs to check
      * @param Swift_Message|null $message
      *
      * @return $this
      */
-    protected function seeEmailBcc($bcc, Swift_Message $message = null)
+    protected function seeEmailBcc($bcc_list, Swift_Message $message = null)
     {
-        $this->assertArrayHasKey($bcc, (array)$this->getEmail($message)
-                                                   ->getBcc(), "The last email sent was not bcc'ed to $bcc.");
+        if (! is_array($bcc_list)) {
+            $bcc_list = [$bcc_list];
+        }
+
+        $this->arrayHasKey((array)$this->getEmail($message)
+                                                     ->getBcc(), $bcc_list, 'The last email sent was not bcc\'ed to any of the following addresses: ' . implode(', ', $bcc_list) . '.');
 
         return $this;
     }
