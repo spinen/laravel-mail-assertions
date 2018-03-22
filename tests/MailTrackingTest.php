@@ -147,6 +147,29 @@ class MailTrackingTest extends TestCase
      * @test
      * @group unit
      */
+    public function it_checks_multiple_emails_bcc_address()
+    {
+        $message_1 = $this->makeMessage();
+        $message_2 = $this->makeMessage();
+        $message_3 = $this->makeMessage();
+
+        $message_1->setBcc('bcc1@domain.tld');
+        $message_2->setBcc('bcc2@domain.tld');
+        $message_3->setBcc('bcc3@domain.tld');
+
+        $this->mail_tracking->recordMail($message_1);
+        $this->mail_tracking->recordMail($message_2);
+        $this->mail_tracking->recordMail($message_3);
+
+        $this->assertEquals($this->mail_tracking, $this->callProtectedMethod('seeEmailBcc', ['bcc1@domain.tld']));
+
+        $this->assertTrue(in_array())
+    }
+
+    /**
+     * @test
+     * @group unit
+     */
     public function it_checks_email_cc_address()
     {
         $message = $this->makeMessage();
