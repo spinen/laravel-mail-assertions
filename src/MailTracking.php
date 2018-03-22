@@ -60,7 +60,7 @@ trait MailTracking
             return;
         }
 
-        // For PhpUnit 6 and Laravel > 5.1, register the plugin after the app is booted
+        // For PhpUnit 6 and Laravel > 5.2, register the plugin after the app is booted
         $this->afterApplicationCreated(function () use ($register_plugin) {
             $register_plugin();
         });
