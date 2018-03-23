@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Mail;
 use Mockery;
 use ReflectionClass;
 use Spinen\MailAssertions\Stubs\MailTrackingStub as MailTracking;
+use Spinen\MailAssertions\Stubs\OldMailTrackingStub as OldMailTracking;
 use Swift_Mailer;
 use Swift_Message;
 
@@ -97,6 +98,33 @@ class MailTrackingTest extends TestCase
      */
     public function it_registers_MailRecorder_withMail_in_the_setup_with_before_annotated_method()
     {
+        $swift_mock = Mockery::mock(Swift_Mailer::class);
+
+        $swift_mock->shouldReceive('registerPlugin')
+                   ->once()
+                   ->with(Mockery::on(function($closure) {
+                       return is_a($closure, MailRecorder::class);
+                   }))
+                   ->andReturnNull();
+
+        Mail::shouldReceive('getSwiftMailer')
+            ->once()
+            ->withNoArgs()
+            ->andReturn($swift_mock);
+
+        // TODO: Get this method name by parsing annotations
+        $this->mail_tracking->setUpMailTracking();
+    }
+
+    /**
+     * @test
+     * @group unit
+     */
+    public function it_registers_MailRecorder_without_afterApplicationCreated_method_present()
+    {
+        // Use a version of the MailTrackingStub without the afterApplicationCreated method
+        $this->mail_tracking = new OldMailTracking();
+
         $swift_mock = Mockery::mock(Swift_Mailer::class);
 
         $swift_mock->shouldReceive('registerPlugin')
