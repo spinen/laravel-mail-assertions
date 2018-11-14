@@ -5,7 +5,6 @@ NOTE: This is based off a video titled ["Testing Email With Custom Assertions"](
 [![Latest Stable Version](https://poser.pugx.org/spinen/laravel-mail-assertions/v/stable)](https://packagist.org/packages/spinen/laravel-mail-assertions)
 [![Total Downloads](https://poser.pugx.org/spinen/laravel-mail-assertions/downloads)](https://packagist.org/packages/spinen/laravel-mail-assertions)
 [![Latest Unstable Version](https://poser.pugx.org/spinen/laravel-mail-assertions/v/unstable)](https://packagist.org/packages/spinen/laravel-mail-assertions#dev-master)
-[![Dependency Status](https://gemnasium.com/spinen/laravel-mail-assertions.svg)](https://gemnasium.com/spinen/laravel-mail-assertions)
 [![License](https://poser.pugx.org/spinen/laravel-mail-assertions/license)](https://packagist.org/packages/spinen/laravel-mail-assertions)
 
 PHPUnit mail assertions for testing email in Laravel.
