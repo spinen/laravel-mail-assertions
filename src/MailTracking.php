@@ -53,14 +53,6 @@ trait MailTracking
                 ->registerPlugin(new MailRecorder($this));
         };
 
-        // To support Phpunit 5 and Laravel < 5.2, register the plugin normally
-        if (!method_exists($this, 'afterApplicationCreated')) {
-            $register_plugin();
-
-            return;
-        }
-
-        // For PhpUnit 6 and Laravel > 5.2, register the plugin after the app is booted
         $this->afterApplicationCreated(function () use ($register_plugin) {
             $register_plugin();
         });
