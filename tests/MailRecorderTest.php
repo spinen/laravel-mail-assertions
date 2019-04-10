@@ -29,7 +29,7 @@ class MailRecorderTest extends TestCase
      */
     public function it_cannot_be_constructed_without_a_PHPUnit_Framework_TestCase()
     {
-        $this->markTestSkipped('Figure out wha the correct exception should be');
+        $this->markTestSkipped('Figure out what the correct exception should be');
         //$this->expectException(PHPUnit_Framework_Error::class);
 
         if (class_exists(TypeError::class)) {
