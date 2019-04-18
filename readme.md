@@ -1,11 +1,10 @@
 # SPINEN's Laravel Mail Assertions
 
-NOTE: This is based off a video titled ["Testing Email With Custom Assertions"](https://laracasts.com/series/phpunit-testing-in-laravel/episodes/12) that [Jeffrey Way](https://github.com/JeffreyWay) did on [Laracasts.com](https://laracasts.com).  If you do not have an account on that site, then you should make one.  It is an amazing resource.  We have just taken that example & made it an easy to install package.  Thanks Jeffrey!
+NOTE: This is based off a video titled ["Testing Email With Custom Assertions"](https://laracasts.com/series/phpunit-testing-in-laravel/episodes/12) that [Jeffrey Way](https://github.com/JeffreyWay) did on [Laracasts.com](https://laracasts.com).  If you do not have an account on that site, then you should make one.  It is an amazing resource.  We have just taken that example & made it an easy-to-install package.  Thanks Jeffrey!
 
 [![Latest Stable Version](https://poser.pugx.org/spinen/laravel-mail-assertions/v/stable)](https://packagist.org/packages/spinen/laravel-mail-assertions)
-[![Total Downloads](https://poser.pugx.org/spinen/laravel-mail-assertions/downloads)](https://packagist.org/packages/spinen/laravel-mail-assertions)
 [![Latest Unstable Version](https://poser.pugx.org/spinen/laravel-mail-assertions/v/unstable)](https://packagist.org/packages/spinen/laravel-mail-assertions#dev-master)
-[![Dependency Status](https://gemnasium.com/spinen/laravel-mail-assertions.svg)](https://gemnasium.com/spinen/laravel-mail-assertions)
+[![Total Downloads](https://poser.pugx.org/spinen/laravel-mail-assertions/downloads)](https://packagist.org/packages/spinen/laravel-mail-assertions)
 [![License](https://poser.pugx.org/spinen/laravel-mail-assertions/license)](https://packagist.org/packages/spinen/laravel-mail-assertions)
 
 PHPUnit mail assertions for testing email in Laravel.
@@ -22,12 +21,12 @@ PHPUnit mail assertions for testing email in Laravel.
 Install the package:
 
 ```bash
-    $ composer require spinen/laravel-mail-assertions
+$ composer require spinen/laravel-mail-assertions
 ```
 
 ## Configuration
 
-In order for the package to be able to make assertions on your emails, it has to be able to "read" the messages. It does so by parsing the laravel log, so your mail driver has to be "log" for this package to function.
+In order for the package to be able to make assertions on your emails, it has to be able to "read" the messages. It does so by parsing the Laravel log, so your mail driver has to be "log" for this package to function.
 
 ## Usage
 
