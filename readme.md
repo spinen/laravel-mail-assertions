@@ -21,7 +21,7 @@ PHPUnit mail assertions for testing email in Laravel.
 Install the package:
 
 ```bash
-$ composer require spinen/laravel-mail-assertions
+$ composer require spinen/laravel-mail-assertions --dev
 ```
 
 ## Configuration
