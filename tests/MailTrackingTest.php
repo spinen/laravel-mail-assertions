@@ -243,18 +243,21 @@ class MailTrackingTest extends TestCase
     public function it_knows_how_many_emails_have_been_sent()
     {
         $this->assertEquals($this->mail_tracking, $this->callProtectedMethod('seeEmailCountEquals', [0]));
+        $this->assertEquals($this->mail_tracking, $this->callProtectedMethod('seeEmailsSent', [0]));
 
         $message = $this->makeMessage();
 
         $this->mail_tracking->recordMail($message);
 
         $this->assertEquals($this->mail_tracking, $this->callProtectedMethod('seeEmailCountEquals', [1]));
+        $this->assertEquals($this->mail_tracking, $this->callProtectedMethod('seeEmailsSent', [1]));
 
         $message = $this->makeMessage();
 
         $this->mail_tracking->recordMail($message);
 
         $this->assertEquals($this->mail_tracking, $this->callProtectedMethod('seeEmailCountEquals', [2]));
+        $this->assertEquals($this->mail_tracking, $this->callProtectedMethod('seeEmailsSent', [2]));
     }
 
     /**
