@@ -6,10 +6,10 @@ use Illuminate\Support\Facades\Mail;
 use Swift_Message;
 
 /**
- * Class MailTracking
+ * Trait MailTracking
  *
  * Trait to mixin to your test to allow for custom assertions when using PHPUnit with Laravel. This trait assumes
- * you are extending from the PHPUnit TestCase class (or a child of it).
+ * you are using it from the PHPUnit TestCase class (or a child class of it).
  *
  * This originally started out as a copy & paste from a video series that Jeffrey Way did on laracasts.com. If you do
  * not have an account on Laracasts, you should get one. It is an amazing resource to learn from. We used that
@@ -28,7 +28,6 @@ trait MailTracking
     // TODO: Add check for attachments (number of & name)
     // TODO: Add check for header
     // TODO: Add check for message type
-    // TODO: Add check for Priority
     // TODO: Allow checking specific message not just most recent one
 
     /**
@@ -41,7 +40,7 @@ trait MailTracking
     /**
      * Register a listener for new emails.
      *
-     * This calls my PHPUnit before each test it runs. It registers the MailRecorder "plugin" with Swift, so that we
+     * This calls our PHPUnit before each test it runs. It registers the MailRecorder "plugin" with Swift, so that we
      * can get a copy of each email that is sent during that test.
      *
      * @before
@@ -250,7 +249,7 @@ trait MailTracking
      *
      * @param integer $count
      *
-     * @return TestCase $this
+     * @return MailTracking $this
      * @deprecated in favor of seeEmailCountEquals
      */
     protected function seeEmailsSent($count)
@@ -280,7 +279,7 @@ trait MailTracking
      * @param string             $subject
      * @param Swift_Message|null $message
      *
-     * @return TestCase $this
+     * @return MailTracking $this
      * @deprecated in favor of seeEmailSubjectEquals
      */
     protected function seeEmailSubject($subject, Swift_Message $message = null)
