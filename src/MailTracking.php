@@ -28,7 +28,6 @@ trait MailTracking
     // TODO: Add check for attachments (number of & name)
     // TODO: Add check for header
     // TODO: Add check for message type
-    // TODO: Add check for Priority
     // TODO: Allow checking specific message not just most recent one
 
     /**
@@ -250,7 +249,7 @@ trait MailTracking
      *
      * @param integer $count
      *
-     * @return TestCase $this
+     * @return MailTracking $this
      * @deprecated in favor of seeEmailCountEquals
      */
     protected function seeEmailsSent($count)
@@ -280,7 +279,7 @@ trait MailTracking
      * @param string             $subject
      * @param Swift_Message|null $message
      *
-     * @return TestCase $this
+     * @return MailTracking $this
      * @deprecated in favor of seeEmailSubjectEquals
      */
     protected function seeEmailSubject($subject, Swift_Message $message = null)
