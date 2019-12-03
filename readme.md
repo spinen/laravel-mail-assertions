@@ -30,7 +30,7 @@ In order for the package to be able to make assertions on your emails, it has to
 
 ## Usage
 
-You mixin the assertions with the ```Spinen\MailAssertions\MailTracking``` trait.  You get the following assertions...
+You mixin the assertions with the `Spinen\MailAssertions\MailTracking` trait.  You get the following assertions...
 
 * seeEmailBcc
 * seeEmailCc
