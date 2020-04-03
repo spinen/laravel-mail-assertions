@@ -298,8 +298,8 @@ trait MailTracking
     protected function seeEmailSubjectContains($excerpt, Swift_Message $message = null)
     {
         $this->assertStringContainsString($excerpt, $this->getEmail($message)
-                                             ->getSubject(),
-                              "The last email sent did not contain the provided subject.");
+                                                         ->getSubject(),
+            "The last email sent did not contain the provided subject.");
 
         return $this;
     }
@@ -315,8 +315,8 @@ trait MailTracking
     protected function seeEmailSubjectDoesNotContain($excerpt, Swift_Message $message = null)
     {
         $this->assertStringNotContainsString($excerpt, $this->getEmail($message)
-                                                ->getSubject(),
-                                 "The last email sent contained the provided text in its subject.");
+                                                            ->getSubject(),
+            "The last email sent contained the provided text in its subject.");
 
         return $this;
     }
