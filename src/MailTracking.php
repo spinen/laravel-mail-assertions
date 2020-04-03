@@ -133,7 +133,7 @@ trait MailTracking
      */
     protected function seeEmailContains($excerpt, Swift_Message $message = null)
     {
-        $this->assertContains($excerpt, $this->getEmail($message)
+        $this->assertStringContainsString($excerpt, $this->getEmail($message)
                                              ->getBody(), "The last email sent did not contain the provided body.");
 
         return $this;
@@ -167,7 +167,7 @@ trait MailTracking
      */
     protected function seeEmailDoesNotContain($excerpt, Swift_Message $message = null)
     {
-        $this->assertNotContains($excerpt, $this->getEmail($message)
+        $this->assertStringNotContainsString($excerpt, $this->getEmail($message)
                                                 ->getBody(),
                                  "The last email sent contained the provided text in its body.");
 
@@ -297,7 +297,7 @@ trait MailTracking
      */
     protected function seeEmailSubjectContains($excerpt, Swift_Message $message = null)
     {
-        $this->assertContains($excerpt, $this->getEmail($message)
+        $this->assertStringContainsString($excerpt, $this->getEmail($message)
                                              ->getSubject(),
                               "The last email sent did not contain the provided subject.");
 
@@ -314,7 +314,7 @@ trait MailTracking
      */
     protected function seeEmailSubjectDoesNotContain($excerpt, Swift_Message $message = null)
     {
-        $this->assertNotContains($excerpt, $this->getEmail($message)
+        $this->assertStringNotContainsString($excerpt, $this->getEmail($message)
                                                 ->getSubject(),
                                  "The last email sent contained the provided text in its subject.");
 
