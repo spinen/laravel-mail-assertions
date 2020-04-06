@@ -2,7 +2,9 @@
 
 namespace Spinen\MailAssertions;
 
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Container\Container;
+use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Contracts\Mail\Mailer;
 use Swift_Message;
 
 /**
@@ -48,13 +50,28 @@ trait MailTracking
     public function setUpMailTracking()
     {
         $register_plugin = function () {
-            Mail::getSwiftMailer()
-                ->registerPlugin(new MailRecorder($this));
+            $this->resolveMailer()
+                 ->getSwiftMailer()
+                 ->registerPlugin(new MailRecorder($this));
         };
 
         $this->afterApplicationCreated(function () use ($register_plugin) {
             $register_plugin();
         });
+    }
+
+    /**
+     * Resolve the mailer from the IoC
+     *
+     * We are staying away from the Mail facade, so that we can support PHP 7.4 with Laravel 5.x
+     *
+     * @return Mailer
+     * @throws BindingResolutionException
+     */
+    protected function resolveMailer()
+    {
+        return Container::getInstance()
+                        ->make(Mailer::class);
     }
 
     /**

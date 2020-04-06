@@ -2,7 +2,8 @@
 
 namespace Spinen\MailAssertions;
 
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Container\Container;
+use Illuminate\Contracts\Mail\Mailer;
 use Mockery;
 use ReflectionClass;
 use Spinen\MailAssertions\Stubs\MailTrackingStub as MailTracking;
@@ -22,11 +23,20 @@ class MailTrackingTest extends TestCase
     protected $mail_tracking;
 
     /**
+     * @var Mockery\Mock
+     */
+    protected $mailer_mock;
+
+    /**
      * Make a new MailTracking (Stub) instance for each test
      */
     protected function setUp(): void
     {
         $this->mail_tracking = new MailTracking();
+        $this->mailer_mock = Mockery::mock(Mailer::class);
+
+        Container::getInstance()
+                 ->instance(Mailer::class, $this->mailer_mock);
 
         parent::setUp();
     }
@@ -104,7 +114,7 @@ class MailTrackingTest extends TestCase
                    }))
                    ->andReturnNull();
 
-        Mail::shouldReceive('getSwiftMailer')
+        $this->mailer_mock->shouldReceive('getSwiftMailer')
             ->once()
             ->withNoArgs()
             ->andReturn($swift_mock);
