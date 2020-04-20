@@ -2,7 +2,9 @@
 
 namespace Spinen\MailAssertions;
 
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Container\Container;
+use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Contracts\Mail\Mailer;
 use Swift_Message;
 
 /**
@@ -48,13 +50,28 @@ trait MailTracking
     public function setUpMailTracking()
     {
         $register_plugin = function () {
-            Mail::getSwiftMailer()
-                ->registerPlugin(new MailRecorder($this));
+            $this->resolveMailer()
+                 ->getSwiftMailer()
+                 ->registerPlugin(new MailRecorder($this));
         };
 
         $this->afterApplicationCreated(function () use ($register_plugin) {
             $register_plugin();
         });
+    }
+
+    /**
+     * Resolve the mailer from the IoC
+     *
+     * We are staying away from the Mail facade, so that we can support PHP 7.4 with Laravel 5.x
+     *
+     * @return Mailer
+     * @throws BindingResolutionException
+     */
+    protected function resolveMailer()
+    {
+        return Container::getInstance()
+                        ->make(Mailer::class);
     }
 
     /**
@@ -133,8 +150,8 @@ trait MailTracking
      */
     protected function seeEmailContains($excerpt, Swift_Message $message = null)
     {
-        $this->assertContains($excerpt, $this->getEmail($message)
-                                             ->getBody(), "The last email sent did not contain the provided body.");
+        $this->assertStringContainsString($excerpt, $this->getEmail($message)
+                                                         ->getBody(), "The last email sent did not contain the provided body.");
 
         return $this;
     }
@@ -167,9 +184,8 @@ trait MailTracking
      */
     protected function seeEmailDoesNotContain($excerpt, Swift_Message $message = null)
     {
-        $this->assertNotContains($excerpt, $this->getEmail($message)
-                                                ->getBody(),
-                                 "The last email sent contained the provided text in its body.");
+        $this->assertStringNotContainsString($excerpt, $this->getEmail($message)
+                                                            ->getBody(), "The last email sent contained the provided text in its body.");
 
         return $this;
     }
@@ -297,9 +313,8 @@ trait MailTracking
      */
     protected function seeEmailSubjectContains($excerpt, Swift_Message $message = null)
     {
-        $this->assertContains($excerpt, $this->getEmail($message)
-                                             ->getSubject(),
-                              "The last email sent did not contain the provided subject.");
+        $this->assertStringContainsString($excerpt, $this->getEmail($message)
+                                                         ->getSubject(), "The last email sent did not contain the provided subject.");
 
         return $this;
     }
@@ -314,9 +329,8 @@ trait MailTracking
      */
     protected function seeEmailSubjectDoesNotContain($excerpt, Swift_Message $message = null)
     {
-        $this->assertNotContains($excerpt, $this->getEmail($message)
-                                                ->getSubject(),
-                                 "The last email sent contained the provided text in its subject.");
+        $this->assertStringNotContainsString($excerpt, $this->getEmail($message)
+                                                            ->getSubject(), "The last email sent contained the provided text in its subject.");
 
         return $this;
     }
@@ -332,8 +346,7 @@ trait MailTracking
     protected function seeEmailSubjectEquals($subject, Swift_Message $message = null)
     {
         $this->assertEquals($subject, $this->getEmail($message)
-                                           ->getSubject(),
-                            "The last email sent did not contain a subject of $subject.");
+                                           ->getSubject(), "The last email sent did not contain a subject of $subject.");
 
         return $this;
     }
