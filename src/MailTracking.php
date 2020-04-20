@@ -118,12 +118,8 @@ trait MailTracking
      */
     protected function seeEmailBcc($bcc, Swift_Message $message = null)
     {
-        $this->assertArrayHasKey(
-            $bcc,
-            (array)$this->getEmail($message)
-                        ->getBcc(),
-            "The last email sent was not bcc'ed to $bcc."
-        );
+        $this->assertArrayHasKey($bcc, (array)$this->getEmail($message)
+                                                   ->getBcc(), "The last email sent was not bcc'ed to $bcc.");
 
         return $this;
     }
@@ -138,12 +134,8 @@ trait MailTracking
      */
     protected function seeEmailCc($cc, Swift_Message $message = null)
     {
-        $this->assertArrayHasKey(
-            $cc,
-            (array)$this->getEmail($message)
-                        ->getCc(),
-            "The last email sent was not cc'ed to $cc."
-        );
+        $this->assertArrayHasKey($cc, (array)$this->getEmail($message)
+                                                  ->getCc(), "The last email sent was not cc'ed to $cc.");
 
         return $this;
     }
@@ -158,12 +150,8 @@ trait MailTracking
      */
     protected function seeEmailContains($excerpt, Swift_Message $message = null)
     {
-        $this->assertStringContainsString(
-            $excerpt,
-            $this->getEmail($message)
-                 ->getBody(),
-            "The last email sent did not contain the provided body."
-        );
+        $this->assertStringContainsString($excerpt, $this->getEmail($message)
+                                                         ->getBody(), "The last email sent did not contain the provided body.");
 
         return $this;
     }
@@ -179,12 +167,9 @@ trait MailTracking
      */
     protected function seeEmailContentTypeEquals($content_type, Swift_Message $message = null)
     {
-        $this->assertEquals(
-            $content_type,
-            $this->getEmail($message)
-                 ->getContentType(),
-            "The last email sent did not contain the provided body."
-        );
+        $this->assertEquals($content_type, $this->getEmail($message)
+                                                ->getContentType(),
+            "The last email sent did not contain the provided body.");
 
         return $this;
     }
@@ -199,12 +184,8 @@ trait MailTracking
      */
     protected function seeEmailDoesNotContain($excerpt, Swift_Message $message = null)
     {
-        $this->assertStringNotContainsString(
-            $excerpt,
-            $this->getEmail($message)
-                 ->getBody(),
-            "The last email sent contained the provided text in its body."
-        );
+        $this->assertStringNotContainsString($excerpt, $this->getEmail($message)
+                                                            ->getBody(), "The last email sent contained the provided text in its body.");
 
         return $this;
     }
@@ -219,12 +200,8 @@ trait MailTracking
      */
     protected function seeEmailEquals($body, Swift_Message $message = null)
     {
-        $this->assertEquals(
-            $body,
-            $this->getEmail($message)
-                 ->getBody(),
-            "The last email sent did not match the given email."
-        );
+        $this->assertEquals($body, $this->getEmail($message)
+                                        ->getBody(), "The last email sent did not match the given email.");
 
         return $this;
     }
@@ -240,12 +217,8 @@ trait MailTracking
     protected function seeEmailFrom($sender, Swift_Message $message = null)
     {
         // TODO: Allow from to be an array to check email & name
-        $this->assertArrayHasKey(
-            $sender,
-            (array)$this->getEmail($message)
-                        ->getFrom(),
-            "The last email sent was not sent from $sender."
-        );
+        $this->assertArrayHasKey($sender, (array)$this->getEmail($message)
+                                                      ->getFrom(), "The last email sent was not sent from $sender.");
 
         return $this;
     }
@@ -264,11 +237,8 @@ trait MailTracking
         $actual_priority = $this->getEmail($message)
                                 ->getPriority();
 
-        $this->assertEquals(
-            $priority,
-            $actual_priority,
-            "The last email sent had a priority of $actual_priority but expected $priority."
-        );
+        $this->assertEquals($priority, $actual_priority,
+            "The last email sent had a priority of $actual_priority but expected $priority.");
 
         return $this;
     }
@@ -283,12 +253,9 @@ trait MailTracking
      */
     protected function seeEmailReplyTo($reply_to, Swift_Message $message = null)
     {
-        $this->assertArrayHasKey(
-            $reply_to,
-            (array)$this->getEmail($message)
-                        ->getReplyTo(),
-            "The last email sent was not set to reply to $reply_to."
-        );
+        $this->assertArrayHasKey($reply_to, (array)$this->getEmail($message)
+                                                        ->getReplyTo(),
+                                 "The last email sent was not set to reply to $reply_to.");
 
         return $this;
     }
@@ -346,12 +313,8 @@ trait MailTracking
      */
     protected function seeEmailSubjectContains($excerpt, Swift_Message $message = null)
     {
-        $this->assertStringContainsString(
-            $excerpt,
-            $this->getEmail($message)
-                 ->getSubject(),
-            "The last email sent did not contain the provided subject."
-        );
+        $this->assertStringContainsString($excerpt, $this->getEmail($message)
+                                                         ->getSubject(), "The last email sent did not contain the provided subject.");
 
         return $this;
     }
@@ -366,12 +329,8 @@ trait MailTracking
      */
     protected function seeEmailSubjectDoesNotContain($excerpt, Swift_Message $message = null)
     {
-        $this->assertStringNotContainsString(
-            $excerpt,
-            $this->getEmail($message)
-                 ->getSubject(),
-            "The last email sent contained the provided text in its subject."
-        );
+        $this->assertStringNotContainsString($excerpt, $this->getEmail($message)
+                                                            ->getSubject(), "The last email sent contained the provided text in its subject.");
 
         return $this;
     }
@@ -386,12 +345,8 @@ trait MailTracking
      */
     protected function seeEmailSubjectEquals($subject, Swift_Message $message = null)
     {
-        $this->assertEquals(
-            $subject,
-            $this->getEmail($message)
-                 ->getSubject(),
-            "The last email sent did not contain a subject of $subject."
-        );
+        $this->assertEquals($subject, $this->getEmail($message)
+                                           ->getSubject(), "The last email sent did not contain a subject of $subject.");
 
         return $this;
     }
@@ -406,12 +361,8 @@ trait MailTracking
      */
     protected function seeEmailTo($recipient, Swift_Message $message = null)
     {
-        $this->assertArrayHasKey(
-            $recipient,
-            (array)$this->getEmail($message)
-                        ->getTo(),
-            "The last email sent was not sent to $recipient."
-        );
+        $this->assertArrayHasKey($recipient, (array)$this->getEmail($message)
+                                                         ->getTo(), "The last email sent was not sent to $recipient.");
 
         return $this;
     }
