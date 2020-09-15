@@ -21,8 +21,8 @@
     ],
     "require": {
         "php": ">=7.2",
-        "illuminate/container": "~5.7|~6|~7",
-        "illuminate/mail": "~5.7|~6|~7",
+        "illuminate/container": "~5.7|~6|~7|~8",
+        "illuminate/mail": "~5.7|~6|~7|~8",
         "swiftmailer/swiftmailer": "~6.2",
         "phpunit/phpunit": "^8.4|^9.0"
     },
