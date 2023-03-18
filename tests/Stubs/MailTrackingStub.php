@@ -7,8 +7,6 @@ use Spinen\MailAssertions\TestCase;
 
 /**
  * Class MailTrackingStub
- *
- * @package Spinen\MailAssertions\Stubs
  */
 class MailTrackingStub extends TestCase
 {
@@ -17,7 +15,6 @@ class MailTrackingStub extends TestCase
     /**
      * Stubs Laravel's afterApplicationCreated() method so that tests can run normally
      *
-     * @param  callable  $callback
      *
      * @return void
      */
@@ -33,7 +30,8 @@ class MailTrackingStub extends TestCase
      *
      * @return array
      */
-    public function exposeMessage() {
+    public function exposeMessage()
+    {
         return $this->emails;
     }
 }

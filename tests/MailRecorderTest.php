@@ -9,8 +9,6 @@ use TypeError;
 
 /**
  * Class MailRecorderTest
- *
- * @package Spinen\MailAssertions
  */
 class MailRecorderTest extends TestCase
 {
@@ -63,6 +61,7 @@ class MailRecorderTest extends TestCase
 
     /**
      * @test
+     *
      * @group
      */
     public function it_records_the_message_on_the_test_by_calling_recordMail()
