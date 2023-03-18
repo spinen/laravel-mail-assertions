@@ -28,6 +28,7 @@
     },
     "require-dev": {
         "egulias/email-validator": "^2.1.16",
+        "laravel/pint": "^1.6",
         "mockery/mockery": "^1.5.1",
         "psy/psysh": "^0.11.1",
         "symfony/var-dumper": "^6.2"
