@@ -12,8 +12,6 @@ use Swift_Message;
 
 /**
  * Class MailTrackingTest
- *
- * @package Spinen\MailAssertions
  */
 class MailTrackingTest extends TestCase
 {
@@ -44,10 +42,7 @@ class MailTrackingTest extends TestCase
     /**
      * Since all of the assertions are protected methods, this allows access to them.
      *
-     * @param string $method_name
-     * @param array  $args
-     *
-     * @return mixed
+     * @param  string  $method_name
      */
     protected function callProtectedMethod($method_name, array $args = [])
     {
@@ -62,13 +57,12 @@ class MailTrackingTest extends TestCase
     /**
      * Make a swift message.
      *
-     * @param null $subject
-     * @param null $body
-     * @param null $to
-     * @param null $from
-     * @param null $contentType
-     * @param null $charset
-     *
+     * @param  null  $subject
+     * @param  null  $body
+     * @param  null  $to
+     * @param  null  $from
+     * @param  null  $contentType
+     * @param  null  $charset
      * @return Swift_Message
      */
     protected function makeMessage(
@@ -81,11 +75,11 @@ class MailTrackingTest extends TestCase
     ) {
         $message = new Swift_Message($subject, $body, $contentType, $charset);
 
-        if (!is_null($to)) {
+        if (! is_null($to)) {
             $message->setTo($to);
         }
 
-        if (!is_null($from)) {
+        if (! is_null($from)) {
             $message->setFrom($from);
         }
 
@@ -109,7 +103,7 @@ class MailTrackingTest extends TestCase
 
         $swift_mock->shouldReceive('registerPlugin')
                    ->once()
-                   ->with(Mockery::on(function($closure) {
+                   ->with(Mockery::on(function ($closure) {
                        return is_a($closure, MailRecorder::class);
                    }))
                    ->andReturnNull();
@@ -215,7 +209,7 @@ class MailTrackingTest extends TestCase
         $this->mail_tracking->recordMail($message);
 
         $this->assertEquals($this->mail_tracking, $this->callProtectedMethod('seeEmailFrom', ['from@domain.tld']));
-	 }
+    }
 
     /**
      * @test
@@ -279,7 +273,7 @@ class MailTrackingTest extends TestCase
         $this->mail_tracking->recordMail($message);
 
         $this->assertEquals($this->mail_tracking,
-                            $this->callProtectedMethod('seeEmailSubjectContains', ['subject']));
+            $this->callProtectedMethod('seeEmailSubjectContains', ['subject']));
     }
 
     /**
@@ -302,7 +296,7 @@ class MailTrackingTest extends TestCase
         $this->mail_tracking->recordMail($message);
 
         $this->assertEquals($this->mail_tracking,
-                            $this->callProtectedMethod('seeEmailSubjectEquals', ['full message subject']));
+            $this->callProtectedMethod('seeEmailSubjectEquals', ['full message subject']));
     }
 
     /**

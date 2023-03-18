@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
 /**
  * Class TestCase
- *
- * @package Tests\Spinen\BrowserFilter
  */
 abstract class TestCase extends PHPUnitTestCase
 {
